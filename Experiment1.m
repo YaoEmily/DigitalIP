@@ -38,6 +38,12 @@ if(digits == 24)
     subplot(2, 2, 3); imshow(uint8(iS)); title('S');
     subplot(2, 2, 4); imshow(uint8(iI2)); title('I');
     
+    %分别输出RGB的直方图
+    figure(4);
+    subplot(1, 3, 1); imhist(uint8(rgb(:,:,1))); title('R直方图');
+    subplot(1, 3, 2); imhist(uint8(rgb(:,:,2))); title('G直方图');
+    subplot(1, 3, 3); imhist(uint8(rgb(:,:,3))); title('B直方图');
+    
     %根据坐标输出RGB
     coord2pixel(image, m, n);
 else
