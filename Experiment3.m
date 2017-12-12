@@ -47,7 +47,7 @@ subplot(2, 2, 4); imshow(meanFilterGN); title(['after MeanFilter, psnr = ', num2
 % œ‘ æΩ∑—Œ‘Î…˘ÕºœÒ
 figure(2);
 subplot(2, 2, 1); imshow(gray); title('original image');
-subplot(2, 2, 2); imshow(saltPepperNoise); title(['before filter, psnr = ', num2str(SPNpsnr) ', ssim = ', num2str(SPNssim)]);
+subplot(2, 2, 2); imshow(saltPepperNoise); title(['before filter, psnr = ', num2str(SPNpsnr), ', ssim = ', num2str(SPNssim)]);
 subplot(2, 2, 3); imshow(medianFilterSPN); title(['after MedianFilter, psnr = ', num2str(MedianF_SPNpsnr) ', ssim = ', num2str(MedianF_SPNssim)]);
 subplot(2, 2, 4); imshow(meanFilterSPN); title(['after MeanFilter, psnr = ', num2str(MeanF_SPNpsnr) ', ssim = ', num2str(MeanF_SPNssim)]);
 
@@ -58,7 +58,7 @@ imshow(gray);
 title('original image');
 subplot(2, 2, 2);
 imshow(gaussianNoise);
-title(['before wavelet transform, psnr is ', num2str(GNpsnr)]);
+title(['before wavelet transform, psnr = ', num2str(GNpsnr), 'ssim = ', num2str(GNssim)]);
 [c, l] = wavedec2(gaussianNoise, 2, 'coif2');
 n = [1,2];
 p = [10.28, 10.08];
@@ -66,12 +66,12 @@ nc_h = wthcoef2('h', c, l, n, p, 's');
 X1 = waverec2(nc_h, l, 'coif2');
 subplot(2, 2, 3);
 imshow(X1);
-title(['after first wavelet transform, psnr is ', num2str(psnr(gray, X1))]);
-nc_v = wthcoef2('v',nc_h,l,n,p,'s');
-X2 = waverec2(nc_v,l,'coif2');
+title(['after first wavelet transform, psnr = ', num2str(psnr(gray, X1)), ', ssim = ', num2str(ssim(gray, X1))]);
+nc_v = wthcoef2('v', nc_h, l, n, p, 's');
+X2 = waverec2(nc_v, l, 'coif2');
 subplot(2, 2, 4);
 imshow(X2);
-title(['after second wavelet transform, psnr is ', num2str(psnr(gray, X2))]);
+title(['after second wavelet transform, psnr = ', num2str(psnr(gray, X2)), ', ssim = ', num2str(ssim(gray, X2))]);
 
 % –°≤®±‰ªª»•‘Î Ω∑—Œ‘Î…˘ÕºœÒ
 figure(4);
@@ -80,7 +80,7 @@ imshow(gray);
 title('original image');
 subplot(2, 2, 2);
 imshow(saltPepperNoise);
-title(['before wavelet transform, psnr is ', num2str(SPNpsnr)]);
+title(['before wavelet transform, psnr = ', num2str(SPNpsnr), ', ssim = ', num2str(SPNssim)]);
 [c, l] = wavedec2(saltPepperNoise, 2, 'coif2');
 n = [1,2];
 p = [10.28, 10.08];
@@ -88,14 +88,14 @@ nc_h = wthcoef2('h', c, l, n, p, 's');
 X1 = waverec2(nc_h, l, 'coif2');
 subplot(2, 2, 3);
 imshow(X1);
-title(['after first wavelet transform, psnr is ', num2str(psnr(gray, X1))]);
-nc_v = wthcoef2('v',nc_h,l,n,p,'s');
-X2 = waverec2(nc_v,l,'coif2');
+title(['after first wavelet transform, psnr = ', num2str(psnr(gray, X1)), ', ssim = ', num2str(ssim(gray, X1))]);
+nc_v = wthcoef2('v', nc_h, l, n, p, 's');
+X2 = waverec2(nc_v, l, 'coif2');
 subplot(2, 2, 4);
 imshow(X2);
-title(['after second wavelet transform, psnr is ', num2str(psnr(gray, X2))]);
+title(['after second wavelet transform, psnr = ', num2str(psnr(gray, X2)), ', ssim = ', num2str(ssim(gray, X2))]);
 
 % sobel±ﬂ‘µºÏ≤‚À„∑®
-result = mySobel(gray);
+borderImage = mySobel(gray);
 figure(5);
-imshow(result);
+imshow(borderImage);
