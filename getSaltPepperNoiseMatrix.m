@@ -7,7 +7,7 @@ function [result] = getSaltPepperNoiseMatrix(gray, para)
             if tmp > 1-para
                 result(i, j) = 0;
             elseif tmp < para
-                result(i, j) = 255;
+                result(i, j) = 1;
             else
                 result(i, j) = gray(i, j);
             end
